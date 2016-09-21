@@ -1,0 +1,10 @@
+click (6.6)
+Flask (0.11.1)
+itsdangerous (0.24)
+Jinja2 (2.8)
+MarkupSafe (0.23)
+pip (8.1.2)
+setuptools (27.3.0)
+Werkzeug (0.11.11)
+wheel (0.30.0a0)
+#fixme pip list로 가져오니 저모양으로 생성된다
