@@ -25,28 +25,26 @@
 
   </head>
   <body>
-    <h1>Camera !</h1>
-    <img id="image" src="{{ url_for('camera.feed') }}">
-    <a type="button" href="{{ url_for('index.index') }}"class="btn btn-primary">Back</a>
-    <button type="button" id="shoot" class="btn btn-primary">Shoot</button>
-    <button type="button" id="retry" class="btn btn-primary">Retry</button>
-    <script>
+      <div class="cont">
+          <h1>Camera !</h1>
+          <div>
+              <img width="500" height="500" id="image" src="{{ url_for('camera.feed') }}">
+          </div>
+          <div>
+              <a type="button" href="{{ url_for('index.index') }}"class="btn btn-primary">Back</a>
+              <a type="button" href="{{ url_for('camera.shoot') }}"class="btn btn-primary">Shoot</a>
+          </div>
+      </div>
 
-        $(document).ready(function(){
-            $('#shoot').click(function() {
-                console.log('shoot');
-                console.log('{{ url_for('camera.shoot') }}');
-                $('#image').attr("src","{{ url_for('camera.shoot') }}");
-            });
-
-            $('#retry').click(function() {
-                console.log('retry');
-                $('#image').attr("src","{{ url_for('camera.feed') }}");
-            });
-
-        });
-
-
-    </script>
   </body>
+<style>
+
+    .cont{
+        margin: 200px auto 0 auto;
+        text-align: center;
+
+        /*background-color : #ffc520;*/
+    }
+
+</style>
 </html>

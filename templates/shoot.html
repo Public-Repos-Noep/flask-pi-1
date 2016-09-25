@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Photo-Booth</title>
+    <title>Camera</title>
 
     <!-- Bootstrap -->
     <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
@@ -17,50 +17,33 @@
       <script views="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script views="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-
-    <div class="cont">
-        <h1>Welcome !</h1>
-        <a type="button" href="{{ url_for('camera.camera') }}" class="btn btn-primary">Camera</a>
-        <a type="button" href="{{ url_for('pictures.pictures') }}"class="btn btn-primary">Pictures</a>
-    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="{{ url_for('static' , filename='js/jquery.js') }}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ url_for('static' , filename='js/bootstrap.min.js') }}"></script>
+
+  </head>
+  <body>
+      <div class="cont">
+          <h1>Camera !</h1>
+          <div>
+              <img width="500" height="500" id="image" src="{{ url_for('camera.picture') }}">
+          </div>
+          <div>
+              <a type="button" href="{{ url_for('index.index') }}" class="btn btn-primary">Back</a>
+              <a type="button" href="{{ url_for('camera.camera') }}"class="btn btn-primary">Retry</a>
+          </div>
+      </div>
   </body>
 <style>
-    .text-align-right{
-        text-align: right;
-    }
-    .text-align-left{
-        text-align: left;
-    }
-    .text-align-center{
-        text-align: center;
-    }
-
-    .div-bottom-info{
-        /*display: inline-block;*/
-        text-align: justify;
-    }
-
-    .margin-30{
-        margin-top : 30px;
-        margin-bottom : 30px;
-    }
-    .margin-btm-60{
-        margin-bottom: 60px;
-    }
 
     .cont{
-        width: 300px;
-        margin: 500px auto 0 auto;
+        margin: 200px auto 0 auto;
         text-align: center;
 
         /*background-color : #ffc520;*/
     }
+
 </style>
 </html>
