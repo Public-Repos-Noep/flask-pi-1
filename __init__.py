@@ -1,8 +1,7 @@
 from flask import Flask, render_template
-from views import blue, index, camera, pictures
+from views import index, camera, pictures
 app = Flask(__name__)
 app.register_blueprint(index.blueprint)
-app.register_blueprint(blue.blueprint, url_prefix='/blue')
 app.register_blueprint(camera.blueprint, url_prefix='/camera')
 app.register_blueprint(pictures.blueprint, url_prefix='/pictures')
 
