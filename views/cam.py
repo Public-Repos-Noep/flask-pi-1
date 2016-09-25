@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, Response
-import camera
+from camera.camera import Camera
 
 blueprint = Blueprint('camera', __name__, template_folder='templates')
 
@@ -11,7 +11,8 @@ def camera():
 
 @blueprint.route('/feed', methods=['GET'])
 def feed():
-    return Response(gen(camera.Camera()),mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(Camera())
+                    ,mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 def gen(camera):
