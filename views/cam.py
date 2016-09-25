@@ -11,6 +11,7 @@ def camera():
 
 @blueprint.route('/feed', methods=['GET'])
 def feed():
+    print('/camera/feed')
     camera = Camera()
     return Response(gen(camera)
                     ,mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -18,8 +19,9 @@ def feed():
 
 @blueprint.route('/shoot', methods=['GET'])
 def shoot():
-    camera = Camera()
-    return Response(capture(camera)
+    print('/camera/shoot')
+    ca = Camera()
+    return Response(capture(ca)
                     , mimetype='multipart/x-mixed-replace; boundary=frame')
 
 

@@ -34,10 +34,13 @@
 
         $(document).ready(function(){
             $('#shoot').click(function() {
+                console.log('shoot');
+                console.log('{{ url_for('camera.shoot') }}');
                 $('#image').attr("src","{{ url_for('camera.shoot') }}");
             });
 
             $('#retry').click(function() {
+                console.log('retry');
                 $('#image').attr("src","{{ url_for('camera.feed') }}");
             });
 
