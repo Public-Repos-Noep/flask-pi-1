@@ -1,23 +1,13 @@
 from flask import Flask, render_template
-
+from views import blue, index, camera, pictures
 app = Flask(__name__)
+app.register_blueprint(index.blueprint)
+app.register_blueprint(blue.blueprint, url_prefix='/blue')
+app.register_blueprint(camera.blueprint, url_prefix='/camera')
+app.register_blueprint(pictures.blueprint, url_prefix='/pictures')
 
 
-@app.route('/', methods=['GET'])
-def index():
-    return render_template('index.html')
-
-
-@app.route('/camera', methods=['GET'])
-def camera():
-    return render_template('camera.html')
-
-
-@app.route('/pictures', methods=['GET'])
-def pictures():
-    return render_template('pictures.html')
-
-
+#simple error handling
 @app.errorhandler(404)
 def not_found(error):
     return render_template('error/404.html'), 404
