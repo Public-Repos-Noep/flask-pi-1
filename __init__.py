@@ -1,10 +1,11 @@
 from flask import Flask, render_template
-from views import index, pictures
+from views import index, pictures, test
 from views import cam
 app = Flask(__name__)
 app.register_blueprint(index.blueprint)
 app.register_blueprint(cam.blueprint, url_prefix='/camera')
 app.register_blueprint(pictures.blueprint, url_prefix='/pictures')
+app.register_blueprint(test.blueprint, url_prefix='/test')
 
 
 #simple error handling
