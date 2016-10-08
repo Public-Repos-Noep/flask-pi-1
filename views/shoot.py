@@ -22,16 +22,14 @@ def feed():
                     , mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-# 단일 출력
 def getframe(camera):
     frame = camera.get_frame()
     filesave(frame)
     return (b'--frame\r\n'
             b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-# coding=ascii
 def filesave(frame):
-    with open('temp.jpeg', 'wb') as f:
+    with open('temp.jpg', 'wb') as f:
         f.write(frame)
     print 'file saved'
     return True
