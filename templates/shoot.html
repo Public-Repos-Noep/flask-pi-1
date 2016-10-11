@@ -181,7 +181,21 @@
         console.log("imagesend");
         Caman("#image", function () {
             this.render(() => {
-                //todo  ajax send toserver;
+                var image = this.toBase64();
+                //console.log(image); //-- 보니깐 브라우저 상에서 base64가 생긴다
+                //console.log(JSON.stringify(image))
+                $.ajax({
+                    type: "POST",
+                    timeout: 50000,
+                    url: '/shoot/upload',
+                    data: {'data': image},
+                    success: function (data) {
+                        console.log(data);
+                        alert('success');
+                    }
+                });
+
+
             });
         });
     };
