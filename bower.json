@@ -22,7 +22,8 @@
     "seiyria-bootstrap-slider": "^9.2.0",
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.0",
-    "caman": "^4.1.2"
+    "caman": "^4.1.2",
+    "fabric.js": "fabric#^1.6.5"
   },
   "moduleType": []
 }

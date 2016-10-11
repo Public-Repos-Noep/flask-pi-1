@@ -28,7 +28,7 @@ def feed():
 def send():
     data = dict(request.form)
     imagesave(data['data'][0].split(",")[1], RESULT)
-    imagesend(RESULT)
+    imagesend()
     return 'success', 200
 
 

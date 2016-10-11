@@ -22,6 +22,8 @@
     <script src="{{ url_for('static' , filename='js/bootstrap.min.js') }}"></script>
     <!--bootstrap slider -->
     <script src="{{ url_for('static' , filename='js/bootstrap-slider.min.js') }}"></script>
+    <!--Fabric.js-->
+    <script src="{{ url_for('static' , filename='js/fabric.js') }}"></script>
 
 
 </head>
@@ -29,7 +31,7 @@
 <div id="Content" class="cont">
 
     <div>
-        <img id="image" src="{{ url_for('composite.feed') }}">
+        <canvas id="canvas" width="500px" height="500px"></canvas>
     </div>
     <div>
         <button id="send" type="button" class="btn btn-primary">Send</button>
@@ -48,6 +50,11 @@
     }
 </style>
 <script>
+    const canvas = new fabric.Canvas('canvas');
+    const imgInstance = new fabric.Image.fromURL('{{ url_for('composite.feed') }}', function (img) {
+        canvas.add(img)
+    });
+
     $(document).ready(() => {
         const $send = $("#send");
         $send.click(send)
@@ -56,7 +63,20 @@
     });
 
     const send = () => {
-        console.log('send')
-    }
+        console.log('send');
+        const data = canvas.toDataURL('png');
+
+        $.ajax({
+            type: "POST",
+            timeout: 50000,
+            url: '/composite/send',
+            data: {'data': data},
+            success: function (data) {
+                console.log(data);
+                alert('success');
+            }
+        });
+    };
+
 </script>
 </html>

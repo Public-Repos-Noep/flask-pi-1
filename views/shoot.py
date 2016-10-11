@@ -37,7 +37,7 @@ def upload():
 def send():
     data = dict(request.form)
     imagesave(data['data'][0].split(",")[1], MODIFY)
-    imagesend(MODIFY)
+    imagesend()
     return 'success', 200
 
 
