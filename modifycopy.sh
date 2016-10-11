@@ -13,7 +13,7 @@ TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 echo current time : $TIMESTAMP
 
 PROJECTDIR='/home/pi/Projects/flask-pi-1'
-PICTURE='modify.jpeg'
+PICTURE='modify.png'
 FILEDIR='flask-pi'
 
 #mount android device
