@@ -1,6 +1,7 @@
 # coding=utf-8
 import io
 from flask import Blueprint, render_template, Response, request
+import subprocess
 # from camera.camera_pi import Camera
 from camera.camera_dummy import Camera
 
@@ -26,6 +27,7 @@ def feed():
 def upload():
     data = dict(request.form)
     imagesave(data['data'][0].split(",")[1], 'test.png')
+    imagesend('test.png')
     return 'success', 200
 
 
@@ -47,4 +49,9 @@ def imagesave(frame, name):
     with open(name, 'wb') as f:
         f.write(frame.decode('base64'))
     print 'iamge saved'
+    return True
+
+
+def imagesend(param):
+    subprocess.call('/Users/taehoon/PycharmProjects/flask-pi-1/test.sh')
     return True
