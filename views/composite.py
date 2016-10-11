@@ -7,7 +7,7 @@ blueprint = Blueprint('composite', __name__, template_folder='templates')
 
 MODIFY = 'modify.png'
 RESULT = 'result.png'
-SHELLPATH = '/Volumes/Data/development/rasp/flask-pi-1/test.sh'
+SHELLPATH = '/home/pi/Projects/flask-pi-1/resultcopy.sh'
 
 
 #  사진합성 웹 뷰

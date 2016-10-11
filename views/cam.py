@@ -1,8 +1,8 @@
 # coding=utf-8
 import io
 from flask import Blueprint, render_template, Response
-# from camera.camera_pi import Camera
-from camera.camera_dummy import Camera
+from camera.camera_pi import Camera
+#from camera.camera_dummy import Camera
 
 blueprint = Blueprint('camera', __name__, template_folder='templates')
 
