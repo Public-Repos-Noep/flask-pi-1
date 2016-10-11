@@ -34,6 +34,9 @@
         <canvas id="canvas" width="500px" height="500px"></canvas>
     </div>
     <div>
+        <button id="lion" type="button" class="btn btn-primary">lion</button>
+        <button id="apeach" type="button" class="btn btn-primary">apeach</button>
+        <button id="tube" type="button" class="btn btn-primary">tube</button>
         <button id="send" type="button" class="btn btn-primary">Send</button>
     </div>
 
@@ -50,22 +53,23 @@
     }
 </style>
 <script>
-    const canvas = new fabric.Canvas('canvas');
-    const imgInstance = new fabric.Image.fromURL('{{ url_for('composite.feed') }}', function (img) {
-        canvas.add(img)
-    });
+    const $send = $("#send");
+    const $lion = $("#lion");
+    const $apeach = $("#apeach");
+    const $tube = $("#tube");
+    let canvas = new fabric.Canvas('canvas');
+    canvas.setBackgroundImage('{{ url_for('composite.feed') }}');
 
     $(document).ready(() => {
-        const $send = $("#send");
-        $send.click(send)
-
+        $send.click(send);
+        $lion.click(lion);
+        $apeach.click(apeach);
+        $tube.click(tube);
 
     });
-
     const send = () => {
         console.log('send');
         const data = canvas.toDataURL('png');
-
         $.ajax({
             type: "POST",
             timeout: 50000,
@@ -75,6 +79,25 @@
                 console.log(data);
                 alert('success');
             }
+        });
+    };
+    const lion = () => {
+        new fabric.Image.fromURL('{{ url_for('static', filename='images/lion.png') }}', function (img) {
+            canvas.add(img);
+        });
+    };
+    const apeach = () => {
+        new fabric.Image.fromURL('{{ url_for('static', filename='images/apeach.png') }}', function (img) {
+            img.width = 133;
+            img.height = 171;
+            canvas.add(img);
+        });
+    };
+    const tube = () => {
+        new fabric.Image.fromURL('{{ url_for('static', filename='images/tube.png') }}', function (img) {
+            img.width = 168;
+            img.height = 164;
+            canvas.add(img);
         });
     };
 
