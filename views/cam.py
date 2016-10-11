@@ -13,46 +13,22 @@ def camera():
     return render_template('camera.html')
 
 
-#  사진찍기 웹 뷰
-@blueprint.route('/shoot', methods=['GET'])
-def shoot():
-    print('/camera/shoot')
-    return render_template('shoot.html')
-
-
 #  카메라 메인에서 요청하는 미리보기 스트리밍
 @blueprint.route('/feed', methods=['GET'])
 def feed():
     print('/camera/feed')
     camera = Camera()
-    return Response(gen(camera, True)
+    return Response(stream(camera)
                     , mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-#  사진찍기 웹 뷰에서 요청하는 사진찍기
-@blueprint.route('/picture', methods=['GET'])
-def picture():
-    camera = Camera()
-
-    return Response(gen(camera, False)
-                    , mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-def gen(camera, isStream):
-    if isStream is True:
-        while True:
-            frame = camera.get_frame()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-    else:
+#스트리밍 출력
+def stream(camera):
+    while True:
         frame = camera.get_frame()
-        filesave(frame)
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
-def filesave(frame):
-    with open('temp.jpeg', 'wb'):
-        file.write(frame)
-    print 'file saved'
-    return True
