@@ -8,7 +8,7 @@ blueprint = Blueprint('shoot', __name__, template_folder='templates')
 
 ORIGINAL = 'original.jpg'
 MODIFY = 'modify.png'
-SHELLPATH = '/home/pi/Projects/flas.sh'
+SHELLPATH = '/home/pi/Projects/flask-pi-1/modifycopy.sh'
 
 
 #  사진찍기 웹 뷰
