@@ -109,7 +109,7 @@
         </div>
 
         <button id="composite" type="button" class="btn btn-primary">Composite</button>
-        <button id="save" type="button" class="btn btn-primary">Send</button>
+        <button id="send" type="button" class="btn btn-primary">Send</button>
 
 
     </div>
@@ -130,7 +130,7 @@
         const $saturation = $("#saturation");
         const $hue = $("#hue");
         const $sepia = $("#sepia");
-        const $save = $("#save");
+        const send = $("#send");
         const $composite = $("#composite");
 
         $brightness.slider({
@@ -175,7 +175,7 @@
             }
         });
 
-        $save.click(ajaxImageSend);
+        $send.click(ajaxImageSend);
         $composite.click(toNextView);
     });
 

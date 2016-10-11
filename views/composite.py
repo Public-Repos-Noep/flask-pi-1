@@ -6,7 +6,9 @@ import subprocess
 blueprint = Blueprint('composite', __name__, template_folder='templates')
 
 MODIFY = 'modify.png'
-RESULT='result.png'
+RESULT = 'result.png'
+SHELLPATH = '/Users/taehoon/PycharmProjects/flask-pi-1/test.sh'
+
 
 #  사진합성 웹 뷰
 @blueprint.route('/', methods=['GET'])
@@ -49,6 +51,6 @@ def imagesave(frame, name):
     return True
 
 
-def imagesend(param):
-    subprocess.call('/Users/taehoon/PycharmProjects/flask-pi-1/test.sh')
+def imagesend():
+    subprocess.call(SHELLPATH)
     return True

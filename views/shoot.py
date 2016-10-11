@@ -8,6 +8,7 @@ blueprint = Blueprint('shoot', __name__, template_folder='templates')
 
 ORIGINAL = 'original.jpg'
 MODIFY = 'modify.png'
+SHELLPATH = '/Users/taehoon/PycharmProjects/flask-pi-1/test.sh'
 
 
 #  사진찍기 웹 뷰
@@ -61,6 +62,6 @@ def imagesave(frame, name):
     return True
 
 
-def imagesend(param):
-    subprocess.call('/Users/taehoon/PycharmProjects/flask-pi-1/test.sh')
+def imagesend():
+    subprocess.call(SHELLPATH)
     return True

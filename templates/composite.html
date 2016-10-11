@@ -22,96 +22,21 @@
     <script src="{{ url_for('static' , filename='js/bootstrap.min.js') }}"></script>
     <!--bootstrap slider -->
     <script src="{{ url_for('static' , filename='js/bootstrap-slider.min.js') }}"></script>
-    <!--CamanJs-->
-    <script src="{{ url_for('static' , filename='js/caman.full.js') }}"></script>
 
-    <script type="text/javascript">
-        Caman.DEBUG = true
-    </script>
 
 </head>
 <body>
 <div id="Content" class="cont">
 
-    <img
-         id="image"
-         src="{{ url_for('composite.feed') }}"
-    >
-
-    <div id="Filters">
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>brightness</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="brightness" data-slider-id='brightness' type="text" data-slider-min="-100"
-                       data-slider-max="100" data-slider-step="1"
-                       data-slider-value="0"/>
-
-
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>contrast</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="contrast" data-slider-id='contrast' type="text" data-slider-min="-100" data-slider-max="100"
-                       data-slider-step="1"
-                       data-slider-value="0"/>
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>saturation</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="saturation" data-slider-id='saturation' type="text" data-slider-min="-100"
-                       data-slider-max="100" data-slider-step="1"
-                       data-slider-value="0"/>
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>hue</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="hue" data-slider-id='hue' type="text" data-slider-min="0" data-slider-max="100"
-                       data-slider-step="1"
-                       data-slider-value="0"/>
-
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>sepia</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="sepia" data-slider-id='sepia' type="text" data-slider-min="0" data-slider-max="100"
-                       data-slider-step="1"
-                       data-slider-value="0"/>
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <button id="save" type="button" class="btn btn-primary">Send</button>
-
-
+    <div>
+        <img id="image" src="{{ url_for('composite.feed') }}">
     </div>
+    <div>
+        <button id="send" type="button" class="btn btn-primary">Send</button>
+    </div>
+
+
+</div>
 </div>
 </body>
 <style>
@@ -124,9 +49,14 @@
 </style>
 <script>
     $(document).ready(() => {
+        const $send = $("#send");
+        $send.click(send)
 
 
     });
 
+    const send = () => {
+        console.log('send')
+    }
 </script>
 </html>
