@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf8">
+    <title>Shoot</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-slider.min.css') }}" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script views="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script views="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ url_for('static' , filename='js/jquery.js') }}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static' , filename='js/bootstrap.min.js') }}"></script>
+    <!--bootstrap slider -->
+    <script src="{{ url_for('static' , filename='js/bootstrap-slider.min.js') }}"></script>
+    <!--Fabric.js-->
+    <script src="{{ url_for('static' , filename='js/fabric.js') }}"></script>
+
+
+</head>
+<body>
+<div id="Content" class="cont">
+
+    <div>
+        <canvas id="canvas" width="500px" height="500px"></canvas>
+    </div>
+    <div>
+        <button id="send" type="button" class="btn btn-primary">Send</button>
+    </div>
+
+
+</div>
+</div>
+</body>
+<style>
+    .cont {
+        margin: 200px auto 0 auto;
+        text-align: center;
+
+        /*background-color : #ffc520;*/
+    }
+</style>
+<script>
+    const canvas = new fabric.Canvas('canvas');
+    const imgInstance = new fabric.Image.fromURL('{{ url_for('composite.feed') }}', function (img) {
+        canvas.add(img)
+    });
+
+    $(document).ready(() => {
+        const $send = $("#send");
+        $send.click(send)
+
+
+    });
+
+    const send = () => {
+        console.log('send');
+        const data = canvas.toDataURL('png');
+
+        $.ajax({
+            type: "POST",
+            timeout: 50000,
+            url: '/composite/send',
+            data: {'data': data},
+            success: function (data) {
+                console.log(data);
+                alert('success');
+            }
+        });
+    };
+
+</script>
+</html>

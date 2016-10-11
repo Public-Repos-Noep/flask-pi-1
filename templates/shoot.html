@@ -9,7 +9,7 @@
     <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-slider.min.css') }}" rel="stylesheet">
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script views="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -33,9 +33,8 @@
 <body>
 <div id="Content" class="cont">
 
-    <img width="500" height="500"
+    <img
          id="image"
-            {#         src="{{ url_for('static' , filename='images/example1_290.jpg') }}"#}
          src="{{ url_for('shoot.feed') }}"
     >
 
@@ -109,7 +108,8 @@
             </div>
         </div>
 
-        <button id="save" type="button" class="btn btn-primary">Send</button>
+        <button id="composite" type="button" class="btn btn-primary">Composite</button>
+        <button id="send" type="button" class="btn btn-primary">Send</button>
 
 
     </div>
@@ -125,8 +125,15 @@
 </style>
 <script>
     $(document).ready(() => {
+        const $brightness = $("#brightness");
+        const $contrast = $("#contrast");
+        const $saturation = $("#saturation");
+        const $hue = $("#hue");
+        const $sepia = $("#sepia");
+        const send = $("#send");
+        const $composite = $("#composite");
 
-        $('#brightness').slider({
+        $brightness.slider({
             formatter: (value) => {
                 Caman("#image", function () {
                     this.brightness(value).render();
@@ -134,7 +141,8 @@
                 return 'Current value: ' + value;
             }
         });
-        $('#contrast').slider({
+
+        $contrast.slider({
             formatter: (value) => {
                 Caman("#image", function () {
                     this.contrast(value).render();
@@ -142,7 +150,7 @@
                 return 'Current value: ' + value;
             }
         });
-        $('#saturation').slider({
+        $saturation.slider({
             formatter: (value) => {
                 Caman("#image", function () {
                     this.saturation(value).render();
@@ -150,7 +158,7 @@
                 return 'Current value: ' + value;
             }
         });
-        $('#hue').slider({
+        $hue.slider({
             formatter: (value) => {
                 Caman("#image", function () {
                     this.hue(value).render();
@@ -158,7 +166,7 @@
                 return 'Current value: ' + value;
             }
         });
-        $('#sepia').slider({
+        $sepia.slider({
             formatter: (value) => {
                 Caman("#image", function () {
                     this.sepia(value).render();
@@ -167,17 +175,52 @@
             }
         });
 
-        $("#save").click(() => {
-            Caman("#image", () => {
-                this.render(() => {
-                    //todo  ajax send toserver;
+        $send.click(ajaxImageSend);
+        $composite.click(toNextView);
+    });
+
+    const ajaxImageSend = () => {
+        console.log("imagesend");
+        Caman("#image", function () {
+            this.render(() => {
+                const image = this.toBase64();
+                //console.log(image); //-- 보니깐 브라우저 상에서 base64가 생긴다
+                //console.log(JSON.stringify(image))
+                $.ajax({
+                    type: "POST",
+                    timeout: 50000,
+                    url: '/shoot/send',
+                    data: {'data': image},
+                    success: function (data) {
+                        console.log(data);
+                        alert('success');
+                    }
                 });
             });
+        });
+    };
 
-
+    const toNextView = () =>{
+          console.log("imagesend");
+        Caman("#image", function () {
+            this.render(() => {
+                const image = this.toBase64();
+                //console.log(image); //-- 보니깐 브라우저 상에서 base64가 생긴다
+                //console.log(JSON.stringify(image))
+                $.ajax({
+                    type: "POST",
+                    timeout: 50000,
+                    url: '/shoot/upload',
+                    data: {'data': image},
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href = '/composite';
+                    }
+                });
+            });
         });
 
+    }
 
-    });
 </script>
 </html>

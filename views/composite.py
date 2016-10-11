@@ -1,64 +1,53 @@
 # coding=utf-8
+import io
 from flask import Blueprint, render_template, Response, request
 import subprocess
-# from camera.camera_pi import Camera
-from camera.camera_dummy import Camera
 
-blueprint = Blueprint('shoot', __name__, template_folder='templates')
+blueprint = Blueprint('composite', __name__, template_folder='templates')
 
-ORIGINAL = 'original.jpg'
 MODIFY = 'modify.png'
+RESULT = 'result.png'
 SHELLPATH = '/Users/taehoon/PycharmProjects/flask-pi-1/test.sh'
 
 
-#  사진찍기 웹 뷰
+#  사진합성 웹 뷰
 @blueprint.route('/', methods=['GET'])
-def shoot():
-    print('/camera/shoot')
-    return render_template('shoot.html')
+def composite():
+    return render_template('composite.html')
 
 
 #  사진찍기 웹 뷰에서 요청하는 사진찍기
 @blueprint.route('/feed', methods=['GET'])
 def feed():
-    frame = getframe(Camera())
+    frame = getframe()
     return Response(frame
                     , mimetype='multipart/x-mixed-replace; boundary=frame')
-
-
-@blueprint.route('/upload', methods=['POST'])
-def upload():
-    data = dict(request.form)
-    imagesave(data['data'][0].split(",")[1], MODIFY)
-    return 'success', 200
 
 
 @blueprint.route('/send', methods=['POST'])
 def send():
     data = dict(request.form)
-    imagesave(data['data'][0].split(",")[1], MODIFY)
+    imagesave(data['data'][0].split(",")[1], RESULT)
     imagesend()
     return 'success', 200
 
 
-def getframe(camera):
-    frame = camera.get_frame()
-    filesave(frame, ORIGINAL)
+def getframe():
+    frame = fileopen(MODIFY)
     return (b'--frame\r\n'
             b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
-def filesave(frame, name):
-    with open(name, 'wb') as f:
-        f.write(frame)
-    print 'file saved '
-    return True
+def fileopen(name):
+    with open(name, 'rb') as f:
+        print 'file loaded '
+        return f.read()
 
 
 def imagesave(frame, name):
     with open(name, 'wb') as f:
         f.write(frame.decode('base64'))
-    print 'iamge saved ' + name
+    print 'iamge saved '
     return True
 
 
