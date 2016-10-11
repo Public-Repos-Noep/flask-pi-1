@@ -1,14 +1,14 @@
 # coding=utf-8
 from flask import Blueprint, render_template, Response, request
 import subprocess
-# from camera.camera_pi import Camera
-from camera.camera_dummy import Camera
+from camera.camera_pi import Camera
+#from camera.camera_dummy import Camera
 
 blueprint = Blueprint('shoot', __name__, template_folder='templates')
 
 ORIGINAL = 'original.jpg'
 MODIFY = 'modify.png'
-SHELLPATH = '/home/pi/Projects/flask-pi-1/modifycopy.sh'
+SHELLPATH = '/home/pi/Projects/flas.sh'
 
 
 #  사진찍기 웹 뷰
