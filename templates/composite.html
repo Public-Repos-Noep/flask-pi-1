@@ -35,7 +35,7 @@
 
     <img
          id="image"
-         src="{{ url_for('shoot.feed') }}"
+         src="{{ url_for('composite.feed') }}"
     >
 
     <div id="Filters">
@@ -108,7 +108,6 @@
             </div>
         </div>
 
-        <button id="composite" type="button" class="btn btn-primary">Composite</button>
         <button id="save" type="button" class="btn btn-primary">Send</button>
 
 
@@ -125,102 +124,9 @@
 </style>
 <script>
     $(document).ready(() => {
-        const $brightness = $("#brightness");
-        const $contrast = $("#contrast");
-        const $saturation = $("#saturation");
-        const $hue = $("#hue");
-        const $sepia = $("#sepia");
-        const $save = $("#save");
-        const $composite = $("#composite");
 
-        $brightness.slider({
-            formatter: (value) => {
-                Caman("#image", function () {
-                    this.brightness(value).render();
-                });
-                return 'Current value: ' + value;
-            }
-        });
 
-        $contrast.slider({
-            formatter: (value) => {
-                Caman("#image", function () {
-                    this.contrast(value).render();
-                });
-                return 'Current value: ' + value;
-            }
-        });
-        $saturation.slider({
-            formatter: (value) => {
-                Caman("#image", function () {
-                    this.saturation(value).render();
-                });
-                return 'Current value: ' + value;
-            }
-        });
-        $hue.slider({
-            formatter: (value) => {
-                Caman("#image", function () {
-                    this.hue(value).render();
-                });
-                return 'Current value: ' + value;
-            }
-        });
-        $sepia.slider({
-            formatter: (value) => {
-                Caman("#image", function () {
-                    this.sepia(value).render();
-                });
-                return 'Current value: ' + value;
-            }
-        });
-
-        $save.click(ajaxImageSend);
-        $composite.click(toNextView);
     });
-
-    const ajaxImageSend = () => {
-        console.log("imagesend");
-        Caman("#image", function () {
-            this.render(() => {
-                const image = this.toBase64();
-                //console.log(image); //-- 보니깐 브라우저 상에서 base64가 생긴다
-                //console.log(JSON.stringify(image))
-                $.ajax({
-                    type: "POST",
-                    timeout: 50000,
-                    url: '/shoot/send',
-                    data: {'data': image},
-                    success: function (data) {
-                        console.log(data);
-                        alert('success');
-                    }
-                });
-            });
-        });
-    };
-
-    const toNextView = () =>{
-          console.log("imagesend");
-        Caman("#image", function () {
-            this.render(() => {
-                const image = this.toBase64();
-                //console.log(image); //-- 보니깐 브라우저 상에서 base64가 생긴다
-                //console.log(JSON.stringify(image))
-                $.ajax({
-                    type: "POST",
-                    timeout: 50000,
-                    url: '/shoot/upload',
-                    data: {'data': image},
-                    success: function (data) {
-                        console.log(data);
-                        window.location.href = '/composite';
-                    }
-                });
-            });
-        });
-
-    }
 
 </script>
 </html>
