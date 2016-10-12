@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/jumbotron-narrow.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,23 +24,74 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ url_for('static' , filename='js/bootstrap.min.js') }}"></script>
 
-  </head>
-  <body>
-      <div class="cont">
-          <h1>Camera !</h1>
-          <div>
-              <img id="image" src="{{ url_for('camera.feed') }}">
-          </div>
-          <div>
-              <a type="button" href="{{ url_for('index.index') }}"class="btn btn-primary">Back</a>
-              <a type="button" href="{{ url_for('shoot.shoot') }}"class="btn btn-primary">Shoot</a>
-          </div>
-      </div>
+</head>
+<body>
 
-  </body>
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="{{ url_for('index.index') }}">Home</a></li>
+                {#            <li role="presentation"><a href="#">About</a></li>#}
+                {#            <li role="presentation"><a href="#">Contact</a></li>#}
+            </ul>
+        </nav>
+        <h3 class="text-muted">Sticker Booth</h3>
+    </div>
+
+    <div class="jumbotron">
+        <img id="image" src="{{ url_for('camera.feed') }}">
+    </div>
+    <p align="center">
+        <a type="button" href="{{ url_for('shoot.shoot') }}" class="btn btn-primary">사진찍기</a>
+    </p>
+
+    {#      <div class="row marketing">#}
+    {#        <div class="col-lg-6">#}
+    {#          <h4>Subheading</h4>#}
+    {#          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>#}
+    {##}
+    {#          <h4>Subheading</h4>#}
+    {#          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>#}
+    {##}
+    {#          <h4>Subheading</h4>#}
+    {#          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>#}
+    {#        </div>#}
+    {##}
+    {#        <div class="col-lg-6">#}
+    {#          <h4>Subheading</h4>#}
+    {#          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>#}
+    {##}
+    {#          <h4>Subheading</h4>#}
+    {#          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>#}
+    {##}
+    {#          <h4>Subheading</h4>#}
+    {#          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>#}
+    {#        </div>#}
+    {#      </div>#}
+
+    <footer class="footer">
+        <p>&copy; 2016 소프트웨어특강, 박태신 유태훈 민승재</p>
+    </footer>
+
+</div> <!-- /container -->
+
+
+{#<div class="cont">#}
+{#    <h1>Camera !</h1>#}
+{#    <div>#}
+        {#            <img id="image" src="{{ url_for('camera.feed') }}">#}
+{#    </div>#}
+{#    <div>#}
+{#        <a type="button" href="{{ url_for('index.index') }}" class="btn btn-primary">Back</a>#}
+{#        <a type="button" href="{{ url_for('shoot.shoot') }}" class="btn btn-primary">Shoot</a>#}
+{#    </div>#}
+{#</div>#}
+
+</body>
 <style>
 
-    .cont{
+    .cont {
         margin: 100px auto 0 auto;
         text-align: center;
 

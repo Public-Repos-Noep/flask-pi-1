@@ -9,6 +9,8 @@
     <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-slider.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/jumbotron-narrow.css') }}" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,89 +33,145 @@
 
 </head>
 <body>
-<div id="Content" class="cont">
-
-    <img
-         id="image"
-         src="{{ url_for('shoot.feed') }}"
-    >
-
-    <div id="Filters">
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>brightness</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="brightness" data-slider-id='brightness' type="text" data-slider-min="-100"
-                       data-slider-max="100" data-slider-step="1"
-                       data-slider-value="0"/>
-
-
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>contrast</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="contrast" data-slider-id='contrast' type="text" data-slider-min="-100" data-slider-max="100"
-                       data-slider-step="1"
-                       data-slider-value="0"/>
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>saturation</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="saturation" data-slider-id='saturation' type="text" data-slider-min="-100"
-                       data-slider-max="100" data-slider-step="1"
-                       data-slider-value="0"/>
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>hue</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="hue" data-slider-id='hue' type="text" data-slider-min="0" data-slider-max="100"
-                       data-slider-step="1"
-                       data-slider-value="0"/>
-
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <div class="Filter">
-            <div class="FilterName">
-                <p>sepia</p>
-            </div>
-
-            <div class="FilterSetting">
-                <input id="sepia" data-slider-id='sepia' type="text" data-slider-min="0" data-slider-max="100"
-                       data-slider-step="1"
-                       data-slider-value="0"/>
-                <span class="FilterValue">0</span>
-            </div>
-        </div>
-
-        <button id="composite" type="button" class="btn btn-primary">Composite</button>
-        <button id="send" type="button" class="btn btn-primary">Send</button>
-
-
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="{{ url_for('index.index') }}">Home</a></li>
+                {#            <li role="presentation"><a href="#">About</a></li>#}
+                {#            <li role="presentation"><a href="#">Contact</a></li>#}
+            </ul>
+        </nav>
+        <h3 class="text-muted">Sticker Booth</h3>
     </div>
-</div>
+
+    <div class="jumbotron">
+        <img id="image" src="{{ url_for('shoot.feed') }}">
+    </div>
+    <p align="center">
+        <button id="composite" type="button" class="btn btn-primary">합성하기</button>
+        <button id="send" type="button" class="btn btn-primary">보내기</button>
+    </p>
+
+    <div class="row marketing">
+        <div class="col-lg-6">
+            <h4>Brightness</h4>
+            <input id="brightness" data-slider-id='brightness' type="text" data-slider-min="-100"
+                   data-slider-max="100" data-slider-step="1"
+                   data-slider-value="0"/>
+            <h4>Contrast</h4>
+            <input id="contrast" data-slider-id='contrast' type="text" data-slider-min="-100" data-slider-max="100"
+                   data-slider-step="1"
+                   data-slider-value="0"/>
+            <h4>Saturation</h4>
+            <input id="saturation" data-slider-id='saturation' type="text" data-slider-min="-100"
+                   data-slider-max="100" data-slider-step="1"
+                   data-slider-value="0"/>
+        </div>
+
+        <div class="col-lg-6">
+            <h4>Hue</h4>
+            <input id="hue" data-slider-id='hue' type="text" data-slider-min="0" data-slider-max="100"
+                   data-slider-step="1"
+                   data-slider-value="0"/>
+
+            <h4>Sepia</h4>
+            <input id="sepia" data-slider-id='sepia' type="text" data-slider-min="0" data-slider-max="100"
+                   data-slider-step="1"
+                   data-slider-value="0"/>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2016 소프트웨어특강, 박태신 유태훈 민승재</p>
+    </footer>
+
+</div> <!-- /container -->
+
+
+{#    <div id="Content" class="cont">#}
+{##}
+{#        <img#}
+{#             id="image"#}
+{#             src="{{ url_for('shoot.feed') }}"#}
+{#        >#}
+{##}
+{#        <div id="Filters">#}
+{##}
+{#            <div class="Filter">#}
+{#                <div class="FilterName">#}
+{#                    <p>brightness</p>#}
+{#                </div>#}
+{##}
+{#                <div class="FilterSetting">#}
+{#                    <input id="brightness" data-slider-id='brightness' type="text" data-slider-min="-100"#}
+{#                           data-slider-max="100" data-slider-step="1"#}
+{#                           data-slider-value="0"/>#}
+{##}
+{##}
+{#                    <span class="FilterValue">0</span>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="Filter">#}
+{#                <div class="FilterName">#}
+{#                    <p>contrast</p>#}
+{#                </div>#}
+{##}
+{#                <div class="FilterSetting">#}
+{#                    <input id="contrast" data-slider-id='contrast' type="text" data-slider-min="-100" data-slider-max="100"#}
+{#                           data-slider-step="1"#}
+{#                           data-slider-value="0"/>#}
+{#                    <span class="FilterValue">0</span>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="Filter">#}
+{#                <div class="FilterName">#}
+{#                    <p>saturation</p>#}
+{#                </div>#}
+{##}
+{#                <div class="FilterSetting">#}
+{#                    <input id="saturation" data-slider-id='saturation' type="text" data-slider-min="-100"#}
+{#                           data-slider-max="100" data-slider-step="1"#}
+{#                           data-slider-value="0"/>#}
+{#                    <span class="FilterValue">0</span>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="Filter">#}
+{#                <div class="FilterName">#}
+{#                    <p>hue</p>#}
+{#                </div>#}
+{##}
+{#                <div class="FilterSetting">#}
+{#                    <input id="hue" data-slider-id='hue' type="text" data-slider-min="0" data-slider-max="100"#}
+{#                           data-slider-step="1"#}
+{#                           data-slider-value="0"/>#}
+{##}
+{#                    <span class="FilterValue">0</span>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="Filter">#}
+{#                <div class="FilterName">#}
+{#                    <p>sepia</p>#}
+{#                </div>#}
+{##}
+{#                <div class="FilterSetting">#}
+{#                    <input id="sepia" data-slider-id='sepia' type="text" data-slider-min="0" data-slider-max="100"#}
+{#                           data-slider-step="1"#}
+{#                           data-slider-value="0"/>#}
+{#                    <span class="FilterValue">0</span>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <button id="composite" type="button" class="btn btn-primary">Composite</button>#}
+{#            <button id="send" type="button" class="btn btn-primary">Send</button>#}
+{##}
+{##}
+{#        </div>#}
+{#    </div>#}
 </body>
 <style>
     .cont {
@@ -200,8 +258,8 @@
         });
     };
 
-    const toNextView = () =>{
-          console.log("imagesend");
+    const toNextView = () => {
+        console.log("imagesend");
         Caman("#image", function () {
             this.render(() => {
                 const image = this.toBase64();

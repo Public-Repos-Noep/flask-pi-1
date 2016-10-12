@@ -9,6 +9,8 @@
     <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-slider.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/jumbotron-narrow.css') }}" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,21 +30,49 @@
 
 </head>
 <body>
-<div id="Content" class="cont">
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="{{ url_for('index.index') }}">Home</a></li>
+                    {#            <li role="presentation"><a href="#">About</a></li>#}
+                    {#            <li role="presentation"><a href="#">Contact</a></li>#}
+                </ul>
+            </nav>
+            <h3 class="text-muted">Sticker Booth</h3>
+        </div>
 
-    <div>
-        <canvas id="canvas" width="500px" height="500px"></canvas>
-    </div>
-    <div>
-        <button id="lion" type="button" class="btn btn-primary">lion</button>
-        <button id="apeach" type="button" class="btn btn-primary">apeach</button>
-        <button id="tube" type="button" class="btn btn-primary">tube</button>
-        <button id="send" type="button" class="btn btn-primary">Send</button>
-    </div>
+        <div class="jumbotron">
+            <canvas id="canvas" width="500px" height="500px"></canvas>
 
+        </div>
+        <p align="center">
+              <button id="lion" type="button" class="btn btn-primary">라이언</button>
+            <button id="apeach" type="button" class="btn btn-primary">어피치</button>
+            <button id="tube" type="button" class="btn btn-primary">튜브</button>
+            <button id="send" type="button" class="btn btn-primary">보내기</button>
+        </p>
 
-</div>
-</div>
+        <footer class="footer">
+            <p>&copy; 2016 소프트웨어특강, 박태신 유태훈 민승재</p>
+        </footer>
+
+    </div> <!-- /container -->
+
+{#    <div id="Content" class="cont">#}
+{##}
+{#        <div>#}
+{#            <canvas id="canvas" width="500px" height="500px"></canvas>#}
+{#        </div>#}
+{#        <div>#}
+{#            <button id="lion" type="button" class="btn btn-primary">lion</button>#}
+{#            <button id="apeach" type="button" class="btn btn-primary">apeach</button>#}
+{#            <button id="tube" type="button" class="btn btn-primary">tube</button>#}
+{#            <button id="send" type="button" class="btn btn-primary">Send</button>#}
+{#        </div>#}
+{##}
+{##}
+{#    </div>#}
 </body>
 <style>
     .cont {
